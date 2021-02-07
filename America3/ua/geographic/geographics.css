@@ -1,0 +1,63 @@
+body{
+	background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1200px-Flag_of_the_United_States.svg.png);
+	margin: 0;
+	padding: 0;
+	height: 100%
+}
+main{
+	background-color: white;
+	width: 70%;
+	height: 100%;
+	margin-left: 13%;
+	border:1px solid grey;
+
+}
+header{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+header a{
+	text-decoration: none;
+	font-size: 25px;
+	
+}
+.dh1{
+	height: 20px;
+	width: 20%;
+	border:4px solid grey;
+	text-align: center;
+	padding: 1rem 1.5rem;
+} 
+.dh12{
+	background-color: yellow;
+	height: 20px;
+	width: 20%;
+	border:4px solid grey;
+	text-align: center;
+	padding: 1rem 1.5rem;
+} 
+.container {
+    position: relative;
+    padding-top: 50px;
+}
+.text1 {
+	font-size: 40px;
+    position: absolute;
+    left: 37%;
+    top: 29px;
+    background: #fff;
+    padding: 0 10px;
+}
+
+p{
+	font-size: 20px;
+	font-family: Palatino, URW Palladio L, serif;
+
+}
+li{
+	font-size: 25px;
+}
+iframe{
+	margin-left: 30%;
+}

@@ -3,76 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grid Layout</title>
+    <title>Interactive Page</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #f4f4f4; }
-
-        .container {
-            display: grid;
-            grid-template-rows: 80px 1fr 60px;
-            grid-template-columns: 25% 1fr;
-            grid-template-areas:
-                "header header"
-                "sidebar main"
-                "footer footer";
-            height: 100vh;
-        }
-
-        /* Assigning grid areas */
-        .header { 
-            grid-area: header; 
-            background: #222; 
-            color: white; 
-            text-align: center; 
-            padding: 20px;
-            display: flex; 
-            justify-content: space-between; /* Align items horizontally */
-            align-items: center;
-        }
-
-        .nav { display: flex; gap: 15px; }
-        .nav a { 
-            color: white; 
-            text-decoration: none; 
-            padding: 5px 10px; 
-            background: #444; 
-            border-radius: 5px; 
-        }
-        .nav a:hover { background: #666; }
-
-        .sidebar { grid-area: sidebar; background: #ddd; padding: 20px; }
-        .main { grid-area: main; background: white; padding: 20px; }
-        .footer { grid-area: footer; background: #222; color: white; text-align: center; padding: 20px; }
-
-        /* Responsive Design: Hide sidebar on small screens */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                grid-template-areas:
-                    "header"
-                    "main"
-                    "footer";
-            }
-            .sidebar {
-                display: none; /* Sidebar disappears on small screens */
-            }
-        }
+        body { font-family: Arial, sans-serif; text-align: center; transition: background-color 0.5s; }
+        input, button { padding: 10px; margin: 10px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div>Header</div>
-            <nav class="nav">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-            </nav>
-        </div>
-        <div class="sidebar">Sidebar</div>
-        <div class="main">Main Content</div>
-        <div class="footer">Footer</div>
-    </div>
+    <h1 id="title">Click the button to change me!</h1>
+    <input type="text" id="userInput" placeholder="Enter new title">
+    <button onclick="updateTitle()">Change Title</button>
+
+    <script>
+        function updateTitle() {
+            let newTitle = document.getElementById("userInput").value;
+            if (newTitle.trim() !== "") {
+                document.getElementById("title").innerText = newTitle;
+            }
+            changeBackgroundColor();
+        }
+
+        function changeBackgroundColor() {
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            document.body.style.backgroundColor = randomColor;
+        }
+    </script>
 </body>
 </html>

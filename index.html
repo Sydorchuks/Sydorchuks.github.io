@@ -3,29 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Page</title>
+    <title>To-Do List</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; transition: background-color 0.5s; }
-        input, button { padding: 10px; margin: 10px; }
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
     </style>
 </head>
 <body>
-    <h1 id="title">Click the button to change me!</h1>
-    <input type="text" id="userInput" placeholder="Enter new title">
-    <button onclick="updateTitle()">Change Title</button>
+    <h1>To-Do List</h1>
+    <input type="text" id="task" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
 
     <script>
-        function updateTitle() {
-            let newTitle = document.getElementById("userInput").value;
-            if (newTitle.trim() !== "") {
-                document.getElementById("title").innerText = newTitle;
-            }
-            changeBackgroundColor();
-        }
+        function addTask() {
+            let taskInput = document.getElementById("task");
+            let taskText = taskInput.value.trim();
+            if (taskText !== "") {
+                let li = document.createElement("li");
+                
+                // Task text with completion toggle
+                let span = document.createElement("span");
+                span.innerText = taskText;
+                span.onclick = function() {
+                    span.classList.toggle("completed");
+                };
 
-        function changeBackgroundColor() {
-            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-            document.body.style.backgroundColor = randomColor;
+                // Delete button
+                let deleteBtn = document.createElement("button");
+                deleteBtn.innerText = "❌";
+                deleteBtn.style.marginLeft = "10px";
+                deleteBtn.onclick = function() {
+                    li.remove();
+                };
+
+                li.appendChild(span);
+                li.appendChild(deleteBtn);
+                document.getElementById("taskList").appendChild(li);
+                
+                taskInput.value = "";
+            }
         }
     </script>
 </body>

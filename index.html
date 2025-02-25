@@ -5,17 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        li:hover {
+            background-color: #f8f9fa;
+        }
+
         .completed {
             text-decoration: line-through;
             color: gray;
         }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: red;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            color: darkred;
+        }
     </style>
 </head>
 <body>
-    <h1>To-Do List</h1>
-    <input type="text" id="task" placeholder="Enter a task">
-    <button onclick="addTask()">Add Task</button>
-    <ul id="taskList"></ul>
+
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="task" placeholder="Enter a task">
+        <button onclick="addTask()">Add</button>
+        <ul id="taskList"></ul>
+    </div>
 
     <script>
         function addTask() {
@@ -27,6 +107,7 @@
                 // Task text with completion toggle
                 let span = document.createElement("span");
                 span.innerText = taskText;
+                span.style.flexGrow = "1";
                 span.onclick = function() {
                     span.classList.toggle("completed");
                 };
@@ -34,7 +115,7 @@
                 // Delete button
                 let deleteBtn = document.createElement("button");
                 deleteBtn.innerText = "❌";
-                deleteBtn.style.marginLeft = "10px";
+                deleteBtn.classList.add("delete-btn");
                 deleteBtn.onclick = function() {
                     li.remove();
                 };
@@ -47,5 +128,6 @@
             }
         }
     </script>
+
 </body>
 </html>

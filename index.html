@@ -1,21 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Webpage</title>
-	<style type="text/css">
-		body{
-			font-family:Arial, sans-serif; 
-			text-align: center;
-			margin-top: 50px;
-		}
-		h1{
-			color:red;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Layout</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f4f4f4; }
+        .container { display: flex; flex-direction: column; height: 100vh; }
+        
+        /* Header with Flexbox Navigation */
+        .header { 
+            background: #222; 
+            color: white; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+        .nav { display: flex; gap: 15px; }
+        .nav a { color: white; text-decoration: none; padding: 5px 10px; background: #444; border-radius: 5px; }
+        .nav a:hover { background: #666; }
+
+        /* Layout Adjustments */
+        .content { display: flex; flex: 1; }
+        .sidebar { background: #ddd; width: 30%; padding: 20px; }
+        .main { background: white; flex: 1; padding: 20px; }
+
+        .footer { background: #222; color: white; text-align: center; padding: 20px; }
+    </style>
 </head>
 <body>
-	<h1>Hello, World !</h1>
-	<p>First webpage created in this class</p>
+    <div class="container">
+        <div class="header">
+            <div>Header</div>
+            <nav class="nav">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="sidebar">Sidebar</div>
+            <div class="main">Main Content</div>
+        </div>
+        <div class="footer">Footer</div>
+    </div>
 </body>
 </html>

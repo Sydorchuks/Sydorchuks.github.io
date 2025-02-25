@@ -3,31 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flexbox Layout</title>
+    <title>Grid Layout</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #f4f4f4; }
-        .container { display: flex; flex-direction: column; height: 100vh; }
-        
-        /* Header with Flexbox Navigation */
+
+        .container {
+            display: grid;
+            grid-template-rows: 80px 1fr 60px;
+            grid-template-columns: 25% 1fr;
+            grid-template-areas:
+                "header header"
+                "sidebar main"
+                "footer footer";
+            height: 100vh;
+        }
+
+        /* Assigning grid areas */
         .header { 
+            grid-area: header; 
             background: #222; 
             color: white; 
-            padding: 20px; 
+            text-align: center; 
+            padding: 20px;
             display: flex; 
-            justify-content: space-between; 
+            justify-content: space-between; /* Align items horizontally */
             align-items: center;
         }
+
         .nav { display: flex; gap: 15px; }
-        .nav a { color: white; text-decoration: none; padding: 5px 10px; background: #444; border-radius: 5px; }
+        .nav a { 
+            color: white; 
+            text-decoration: none; 
+            padding: 5px 10px; 
+            background: #444; 
+            border-radius: 5px; 
+        }
         .nav a:hover { background: #666; }
 
-        /* Layout Adjustments */
-        .content { display: flex; flex: 1; }
-        .sidebar { background: #ddd; width: 30%; padding: 20px; }
-        .main { background: white; flex: 1; padding: 20px; }
+        .sidebar { grid-area: sidebar; background: #ddd; padding: 20px; }
+        .main { grid-area: main; background: white; padding: 20px; }
+        .footer { grid-area: footer; background: #222; color: white; text-align: center; padding: 20px; }
 
-        .footer { background: #222; color: white; text-align: center; padding: 20px; }
+        /* Responsive Design: Hide sidebar on small screens */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "main"
+                    "footer";
+            }
+            .sidebar {
+                display: none; /* Sidebar disappears on small screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -40,10 +70,8 @@
                 <a href="#">Contact</a>
             </nav>
         </div>
-        <div class="content">
-            <div class="sidebar">Sidebar</div>
-            <div class="main">Main Content</div>
-        </div>
+        <div class="sidebar">Sidebar</div>
+        <div class="main">Main Content</div>
         <div class="footer">Footer</div>
     </div>
 </body>

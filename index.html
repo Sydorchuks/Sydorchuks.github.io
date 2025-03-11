@@ -3,143 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <title>Simple Homepage</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             text-align: center;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
+          height:100%;
+          
         }
 
         .container {
-            background: white;
-            max-width: 400px;
+            max-width: 800px;
             margin: auto;
-            padding: 20px;
+          padding:20px;
+          margin-top: 20px;
+            background: white;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            color: #333;
+        header {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
         }
 
-        input[type="text"] {
-            width: 70%;
+        nav {
+            background: #218838;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            outline: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
         }
 
         button {
             padding: 10px 15px;
             border: none;
-            background-color: #28a745;
+            background-color: #007bff;
             color: white;
             cursor: pointer;
             border-radius: 5px;
-            margin-left: 5px;
             font-weight: bold;
+            margin-top: 10px;
         }
 
         button:hover {
-            background-color: #218838;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
-
-        li {
-            background: #fff;
-            padding: 10px;
-            margin: 5px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
-        }
-
-        li:hover {
-            background-color: #f8f9fa;
-        }
-
-        .completed {
-            text-decoration: line-through;
-            color: gray;
-        }
-
-        .delete-btn {
-            background: none;
-            border: none;
-            color: red;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .delete-btn:hover {
-            color: darkred;
-        }
-
-        .checkbox {
-            margin-right: 10px;
-            cursor: pointer;
+            background-color: #0056b3;
         }
     </style>
 </head>
-<body>
-
+<body onload="setGreeting()">
+  
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+    
     <div class="container">
-        <h1>To-Do List</h1>
-        <input type="text" id="task" placeholder="Enter a task">
-        <button onclick="addTask()">Add</button>
-        <ul id="taskList"></ul>
+        <main>
+            <h1 id="greeting">Welcome!</h1>
+            <p>Simple homepage layout</p>
+            <button onclick="changeBackground()">Change Background Color</button>
+        </main>
     </div>
+    
+    <footer>
+        &copy; 2025 Oleh Sydorchuk
+    </footer>
 
     <script>
-        function addTask() {
-            let taskInput = document.getElementById("task");
-            let taskText = taskInput.value.trim();
-            if (taskText !== "") {
-                let li = document.createElement("li");
+        function changeBackground() {
+            const colors = ["#f4f4f4", "#dff9fb", "#f8c291", "#82ccdd", "#f7d794"];
+            document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        }
 
-                // Checkbox
-                let checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.classList.add("checkbox");
-                checkbox.onclick = function() {
-                    if (checkbox.checked) {
-                        span.classList.add("completed");
-                    } else {
-                        span.classList.remove("completed");
-                    }
-                };
-
-                // Task text
-                let span = document.createElement("span");
-                span.innerText = taskText;
-                span.style.flexGrow = "1";
-
-                // Delete button
-                let deleteBtn = document.createElement("button");
-                deleteBtn.innerText = "❌";
-                deleteBtn.classList.add("delete-btn");
-                deleteBtn.onclick = function() {
-                    li.remove();
-                };
-
-                li.appendChild(checkbox);
-                li.appendChild(span);
-                li.appendChild(deleteBtn);
-                document.getElementById("taskList").appendChild(li);
-                
-                taskInput.value = "";
+        function setGreeting() {
+            let greeting = document.getElementById("greeting");
+            let hour = new Date().getHours();
+            if (hour < 12) {
+                greeting.innerText = "Good Morning!";
+            } else if (hour < 18) {
+                greeting.innerText = "Good Afternoon!";
+            } else {
+                greeting.innerText = "Good Evening!";
             }
         }
     </script>

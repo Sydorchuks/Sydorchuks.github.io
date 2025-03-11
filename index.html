@@ -43,7 +43,7 @@
 
         nav {
             background: #218838;
-            padding: 10px;
+            padding: 20px;
         }
 
         nav a {
@@ -103,8 +103,8 @@
 
     <script>
         function changeBackground() {
-            const colors = ["#f4f4f4", "#dff9fb", "#f8c291", "#82ccdd", "#f7d794"];
-            document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            const colors = `#${Math.floor(Math.random() * 16777215).toString(16)}`
+            document.body.style.backgroundColor = colors;
         }
 
         function setGreeting() {
